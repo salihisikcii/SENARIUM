@@ -1,0 +1,16 @@
+﻿body {
+    background-color: #e4e2e6;
+}
+
+a {
+    text-decoration: none;
+}
+
+.avatar{
+    width: 4rem;
+    height: 4rem;
+}
+.postImage{
+    width: 60rem;
+    height: 30rem;
+}

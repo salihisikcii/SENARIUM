@@ -1,0 +1,569 @@
+﻿@model IEnumerable<Post>
+
+<div class="swiper progress-slide-carousel swiper-container relative h-114 md:h-115 lg:h-116 2xl:h-128  ">
+    <div class="swiper-wrapper">
+
+
+        <section class="group relative swiper-slide">
+            <div class="   h-114 md:h-115 lg:h-116 2xl:h-128   ">
+                <a href="/home/hakkimda">
+                    <img src="~/img/Designer8.jpeg" alt="Main Image"
+                        class="h-114 md:h-115 lg:h-116 2xl:h-128 w-full"></a>
+
+                <!--Hero Content-->
+                <div class="absolute bottom-0 w-full bg-gradient-to-b from-transparent via-black to-black">
+                    <!--Hero Content Container-->
+                    <div class="container pl-10">
+
+                        <h1
+                            class="text-2xl md:text-3xl font-bold text-orange-600 lg:text-5xl  group-hover:mb-1 duration-500">
+                            Hayallerinizi Gerçekleştirin
+                        </h1>
+                        <p class="text-white group-hover:mb-2 duration-500 text-sm lg:text-xl   w-11/12 lg:w-5/5">
+                            Senaryonuzu paylaşarak daha geniş bir kitleye ulaşın, yapımcıların dikkatini çekin ve
+                            yaratıcı fikirlerinizi profesyonel işbirlikleriyle hayata geçirme fırsatını yakalayın.
+                        </p>
+                        <!--Detail Container-->
+                        <div
+                            class=" flex opacity-5 group-hover:opacity-100 space-x-8  group-hover:mb-10 lg:group-hover:mb-12 duration-1000">
+                            <!--Watch-->
+                            <div class="flex space-x-2 items-center cursor-pointer">
+                                <a href="/home/hakkimda"
+                                    class="text-gray-100  lg:text-lg hover:text-orange-700 duration-300">Daha
+                                    fazla <i class=" ml-2 fas fa-arrow-right  "></i>
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="swiper-slide">
+            <div class="group relative h-114 md:h-115 lg:h-116 2xl:h-128">
+                <a href="/Posts/ZamanDamgasi">
+                    <img src="~/img/Designer5.jpeg" alt="Main Image" class="h-114 md:h-115 lg:h-116 2xl:h-128 w-full">
+                </a>
+
+
+                <!--Hero Content-->
+                <div class="absolute bottom-0 w-full bg-gradient-to-b from-transparent via-black to-black">
+                    <!--Hero Content Container-->
+                    <div class="container pl-10">
+
+                        <h1
+                            class="text-2xl md:text-3xl font-bold text-cyan-400 lg:text-5xl  group-hover:mb-1 duration-500">
+                            Zaman Damgası
+                        </h1>
+                        <p class="text-white group-hover:mb-2 duration-500 text-sm lg:text-xl   w-11/12 lg:w-5/5">
+                            Senaryolarınız, zaman damgası ile korunarak, hem orijinalliği hem de içerik bütünlüğü
+                            güvence altına alınır.</p>
+                        <!--Detail Container-->
+                        <div
+                            class=" flex opacity-5 group-hover:opacity-100 space-x-8  group-hover:mb-10 lg:group-hover:mb-12 duration-1000">
+                            <!--Watch-->
+                            <div class="flex space-x-1 items-center cursor-pointer">
+                                <a href="/Posts/ZamanDamgasi"
+                                    class="text-gray-100  lg:text-lg hover:text-cyan-400 duration-300">Keşfet <i
+                                        class=" ml-2 fas fa-arrow-right  "></i>
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="group relative h-114 md:h-115 lg:h-116 2xl:h-128   ">
+                <a href="/posts/popular">
+                    <img src="~/img/Designer4.jpeg" alt="Main Image" class="h-114 md:h-115 lg:h-116 2xl:h-128 w-full">
+                </a>
+
+                <!--Hero Content-->
+                <div class="absolute bottom-0 w-full bg-gradient-to-b from-transparent via-black to-black">
+                    <!--Hero Content Container-->
+                    <div class="container pl-10">
+
+                        <h1
+                            class="text-2xl md:text-3xl font-bold text-yellow-500 lg:text-5xl  group-hover:mb-1 duration-500">
+                            En Çok Oy Alan Senaryolar
+                        </h1>
+                        <p class="text-white group-hover:mb-2 duration-500 text-sm lg:text-xl   w-11/12 lg:w-5/5">
+                            Her ay yapılan kullanıcı oylamalarıyla en fazla oyu alan 10 senaryo, En İyiler
+                            Listesi'ne
+                            dahil edilir. Bu senaryolar, daha fazla keşfedilirlik kazanarak yapımcıların dikkatini
+                            çekme
+                            olasılığı artar ve satın alınabilir hale gelir.</p>
+                        <!--Detail Container-->
+                        <div
+                            class=" flex opacity-5 group-hover:opacity-100 space-x-8  group-hover:mb-10 lg:group-hover:mb-12 duration-1000">
+                            <!--Watch-->
+                            <div class="flex space-x-1 items-center cursor-pointer">
+                                <a href="/posts/popular"
+                                    class="text-gray-100  lg:text-lg hover:text-yellow-500 duration-300">Keşfet
+                                    <i class=" ml-2 fas fa-arrow-right  "></i>
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-pagination !bottom-2 !top-auto !w-80 right-0 mx-auto bg-gray-100"></div>
+</div>
+
+<div class="flex flex-wrap bg-slate-200 dark:bg-gray-900 mx-auto w-full justify-center lg:space-x-6">
+    <!-- Yaz - Sat -->
+    <div
+        class="flex items-center mx-4 my-8 h-48 sm:h-56 md:h-60 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 w-full sm:w-3/4 md:w-2/3 lg:w-2/5 rounded-lg shadow flex-row">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5
+                class="mb-2 text-base sm:text-lg md:text-xl text-right font-bold tracking-tight text-gray-300 dark:text-white">
+                Yaz ve Paylaş</h5>
+            <p class="mb-3 text-sm sm:text-base text-gray-200 text-right dark:text-gray-200">Vakit kaybetmeden şimdi
+                senaryonu paylaş ve hayallerine bir adım daha yaklaş!</p>
+            <div class="flex justify-end">
+                <a href="/posts/create">
+                    <button type="button"
+                        class="py-2 px-3 mb-2 text-xs sm:text-sm w-full font-medium focus:outline-none whitespace-nowrap bg-white rounded-lg border border-gray-200 hover:text-gray-900 text-cyan-700">
+                        Hemen Başla
+                    </button>
+                </a>
+            </div>
+        </div>
+        <img class="object-cover h-full w-32 sm:w-40 md:w-48" src="~/img/Designer7.jpeg">
+    </div>
+    <!-- Bul - Yap -->
+    <div
+        class="flex items-center mx-4 my-8 h-48 sm:h-56 md:h-60 bg-gradient-to-r from-purple-700 via-purple-500 to-purple-400 w-full sm:w-3/4 md:w-2/3 lg:w-2/5 rounded-lg shadow flex-row hover:bg-gray-100 dark:hover:bg-gray-700">
+        <img class="object-cover h-full w-32 sm:w-40 md:w-48" src="~/img/Designer6.jpeg">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-base sm:text-lg md:text-xl font-bold tracking-tight text-white">Keşfet ve Hayata
+                Geçir</h5>
+            <p class="mb-3 text-sm sm:text-base text-gray-200">Senaryoları keşfederek hayallere ortak olun ve
+                onların gerçeğe dönüşmesine destek verin.</p>
+            <div class="flex justify-start">
+                <a href="/Posts/Index">
+                    <button type="button"
+                        class="py-2 px-3 mb-2 text-xs sm:text-sm w-full font-medium focus:outline-none whitespace-nowrap bg-white rounded-lg border border-gray-200 hover:text-gray-900 text-purple-700">
+                        Senaryoları Keşfet
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="py-24 bg-slate-200  dark:bg-gray-900">
+    <!-- Movies Content -->
+    <div class=" mb-20 space-y-5  lg:space-y-4">
+        <!-- Titles -->
+        <div class=" group flex justify-between  mx-5 text-lg md:text-xl lg:text-2xl ">
+            <h2 class="text-gray-800  dark:text-gray-200  "><a href="/posts/category/tv-dizi"
+                    class="group-hover:text-amber-500 font-bold">Tv
+                    Dizisi</a>
+                <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+            </h2>
+            <h2
+                class="text-gray-800 pl-2 dark:text-gray-200 duration-500  text-center mt-1  text-sm md:text-base lg:text-lg">
+                <a href="/posts/category/tv-dizi" class="group-hover:text-amber-500 font-bold">Tümünü Gör</a>
+            </h2>
+
+        </div>
+
+
+        <!-- Images Container -->
+        <div class="grid  grid-cols-2 grid-rows-3 md:flex  gap-4 mx-5">
+            <!-- Image Template -->
+            @foreach (var item in Model)
+            {
+
+                @if (item.categories != null && item.categories.Any() && item.categories.Any(c => c.Url ==
+               "tv-dizi" && item.IsActive == true))
+                {
+
+
+                    <div class="group relative w-full md:w-1/5 lg:w-1/5 xl:w-2/12 xl:max-w-56 aspect-[2/3]">
+                        <!-- Image -->
+                        <a href="/posts/details/@item.Url">
+                            <img src="~/img/@item.Image" loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-110 group-hover:opacity-90  dark:group-hover:opacity-50 duration-500">
+                        </a>
+                        <!-- Image Detail Container -->
+                        <div class="absolute w-full px-1 sm:px-3 md:px-5 bottom-0 text-xs md:text-sm lg:text-xl">
+                            <h3
+                                class="text-amber-300 font-bold uppercase opacity-5 text-center  text-lg lg:text-xl group-hover:text-amber-300 group-hover:opacity-100 group-hover:mb-5 lg:group-hover:mb-5 duration-500">
+                                @item.Title
+                            </h3>
+                            <!-- Tags Section -->
+                            <div class="flex flex-wrap justify-center gap-1">
+                                <!-- Adjust gap for smaller spacing between tags -->
+                                @foreach (var tag in item.tags)
+                                {
+                                    <span class="flex items-center text-cyan-400 px-2 py-0.5 rounded border-1 border-cyan-300 opacity-5 group-hover:text-cyan-300 group-hover:opacity-100 group-hover:mb-3 lg:group-hover:mb-2 duration-500
+                                          text-xs md:text-xs lg:text-sm xl:text-sm">
+                                        @tag.Text
+                                    </span>
+                                }
+                            </div>
+
+                            <!-- Vote and Read Section -->
+                            <div class="flex justify-between">
+                                <p
+                                    class="flex text-rose-500 text-sm  md:text-sm lg:text-base xl:text-lg opacity-5 group-hover:opacity-100 duration-500 break-words">
+                                    <span class="mr-2 text-xs  md:text-sm lg:text-base ">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                    @item.Vote
+                                </p>
+                                <div
+                                    class="flex  text-xs  md:text-sm lg:text-base xl:text-lg text-amber-400 opacity-5 bottom-2 group-hover:opacity-100 duration-500">
+                                    <a href="/posts/details/@item.Url">Oku <i class="fa-solid ml-1 fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+        </div>
+    </div>
+    <div class="space-y-5 mb-20 lg:space-y-4">
+        <!-- Titles -->
+        <div class=" group flex justify-between  mx-5 text-lg md:text-xl lg:text-2xl ">
+            <h2 class="text-gray-800  dark:text-gray-200  text-lg md:text-xl lg:text-2xl"><a
+                    href="/posts/category/sinema-film" class="group-hover:text-amber-500 font-bold">Sinama Filmi
+                </a>
+                <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+            </h2>
+            <h2
+                class="text-gray-800 pl-2 dark:text-gray-200 duration-500  text-center mt-1  text-sm md:text-base lg:text-lg">
+                <a href="/posts/category/sinema-film" class="group-hover:text-amber-500 font-bold">Tümünü Gör</a>
+            </h2>
+
+        </div>
+
+
+        <!-- Images Container -->
+        <div class="grid  grid-cols-2 grid-rows-3 md:flex  gap-4 mx-5">
+            <!-- Image Template -->
+            @foreach (var item in Model)
+            {
+
+                @if (item.categories != null && item.categories.Any() && item.categories.Any(c => c.Url ==
+               "sinema-film" && item.IsActive == true))
+                {
+
+
+                    <div class="group relative w-full md:w-1/5 lg:w-1/5 xl:w-2/12 xl:max-w-56 aspect-[2/3]">
+                        <!-- Image -->
+                        <a href="/posts/details/@item.Url">
+                            <img src="~/img/@item.Image" loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-110 group-hover:opacity-90  dark:group-hover:opacity-50 duration-500">
+                        </a>
+                        <!-- Image Detail Container -->
+                        <div class="absolute w-full px-1 sm:px-3 md:px-5 bottom-0 text-xs md:text-sm lg:text-xl">
+                            <h3
+                                class="text-amber-300 font-bold uppercase opacity-5 text-center  text-lg lg:text-xl group-hover:text-amber-300 group-hover:opacity-100 group-hover:mb-5 lg:group-hover:mb-5 duration-500">
+                                @item.Title
+                            </h3>
+                            <!-- Tags Section -->
+                            <div class="flex flex-wrap justify-center gap-1">
+                                <!-- Adjust gap for smaller spacing between tags -->
+                                @foreach (var tag in item.tags)
+                                {
+                                    <span class="flex items-center text-cyan-400 px-2 py-0.5 rounded border-1 border-cyan-300 opacity-5 group-hover:text-cyan-300 group-hover:opacity-100 group-hover:mb-3 lg:group-hover:mb-2 duration-500
+                                          text-xs md:text-xs lg:text-sm xl:text-sm">
+                                        @tag.Text
+                                    </span>
+                                }
+                            </div>
+
+                            <!-- Vote and Read Section -->
+                            <div class="flex justify-between">
+                                <p
+                                    class="flex text-rose-500 text-sm  md:text-sm lg:text-base xl:text-lg opacity-5 group-hover:opacity-100 duration-500 break-words">
+                                    <span class="mr-2 text-xs  md:text-sm lg:text-base ">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                    @item.Vote
+                                </p>
+                                <div
+                                    class="flex  text-xs  md:text-sm lg:text-base xl:text-lg text-amber-400 opacity-5 bottom-2 group-hover:opacity-100 duration-500">
+                                    <a href="/posts/details/@item.Url">Oku <i class="fa-solid ml-1 fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+        </div>
+    </div>
+    <div class="space-y-5 mb-20 lg:space-y-4">
+        <!-- Titles -->
+        <div class=" group flex justify-between  mx-5 text-lg md:text-xl lg:text-2xl ">
+            <h2 class="text-gray-800  dark:text-gray-200  text-lg md:text-xl lg:text-2xl"><a
+                    href="/posts/category/dijital-patform-film" class="group-hover:text-amber-500 font-bold">Dijital
+                    Platform Filmi
+                </a>
+                <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+            </h2>
+            <h2
+                class="text-gray-800 pl-2 dark:text-gray-200 duration-500  text-center mt-1  text-sm md:text-base lg:text-lg">
+                <a href="/posts/category/dijital-patform-film" class="group-hover:text-amber-500 font-bold ">Tümünü
+                    Gör</a>
+            </h2>
+
+        </div>
+
+
+        <!-- Images Container -->
+        <div class="grid  grid-cols-2 grid-rows-3 md:flex  gap-4 mx-5">
+            <!-- Image Template -->
+            @foreach (var item in Model)
+            {
+
+                @if (item.categories != null && item.categories.Any() && item.categories.Any(c => c.Url ==
+               "dijital-patform-film" && item.IsActive == true))
+                {
+
+
+                    <div class="group relative w-full md:w-1/5 lg:w-1/5 xl:w-2/12 xl:max-w-56 aspect-[2/3]">
+                        <!-- Image -->
+                        <a href="/posts/details/@item.Url">
+                            <img src="~/img/@item.Image" loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-110 group-hover:opacity-90  dark:group-hover:opacity-50 duration-500">
+                        </a>
+                        <!-- Image Detail Container -->
+                        <div class="absolute w-full px-1 sm:px-3 md:px-5 bottom-0 text-xs md:text-sm lg:text-xl">
+                            <h3
+                                class="text-amber-300 font-bold uppercase opacity-5 text-center  text-lg lg:text-xl group-hover:text-amber-300 group-hover:opacity-100 group-hover:mb-5 lg:group-hover:mb-5 duration-500">
+                                @item.Title
+                            </h3>
+                            <!-- Tags Section -->
+                            <div class="flex flex-wrap justify-center gap-1">
+                                <!-- Adjust gap for smaller spacing between tags -->
+                                @foreach (var tag in item.tags)
+                                {
+                                    <span class="flex items-center text-cyan-400 px-2 py-0.5 rounded border-1 border-cyan-300 opacity-5 group-hover:text-cyan-300 group-hover:opacity-100 group-hover:mb-3 lg:group-hover:mb-2 duration-500
+                                          text-xs md:text-xs lg:text-sm xl:text-sm">
+                                        @tag.Text
+                                    </span>
+                                }
+                            </div>
+
+                            <!-- Vote and Read Section -->
+                            <div class="flex justify-between">
+                                <p
+                                    class="flex text-rose-500 text-sm  md:text-sm lg:text-base xl:text-lg opacity-5 group-hover:opacity-100 duration-500 break-words">
+                                    <span class="mr-2 text-xs  md:text-sm lg:text-base ">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                    @item.Vote
+                                </p>
+                                <div
+                                    class="flex  text-xs  md:text-sm lg:text-base xl:text-lg text-amber-400 opacity-5 bottom-2 group-hover:opacity-100 duration-500">
+                                    <a href="/posts/details/@item.Url">Oku <i class="fa-solid ml-1 fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+        </div>
+    </div>
+    <div class="space-y-5 mb-20 lg:space-y-4">
+        <!-- Titles -->
+        <div class=" group flex justify-between  mx-5  ">
+            <h2 class="text-gray-800  dark:text-gray-200 text-lg md:text-xl lg:text-2xl"><a
+                    href="/posts/category/dijital-patform-dizi" class="group-hover:text-amber-500 font-bold">Dijital
+                    Platform Dizisi
+                </a>
+                <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+            </h2>
+            <h2 class="text-gray-800 pl-2 dark:text-gray-200 text-center mt-1  text-sm md:text-base lg:text-lg"><a
+                    href="/posts/category/dijital-patform-dizi" class="group-hover:text-amber-500 font-bold">Tümünü
+                    Gör</a></h2>
+
+        </div>
+
+
+        <!-- Images Container -->
+        <div class="grid  grid-cols-2 grid-rows-3 md:flex  gap-4 mx-5">
+            <!-- Image Template -->
+            @foreach (var item in Model)
+            {
+
+                @if (item.categories != null && item.categories.Any() && item.categories.Any(c => c.Url ==
+               "dijital-patform-dizi" && item.IsActive == true))
+                {
+
+
+                    <div class="group relative w-full md:w-1/5 lg:w-1/5 xl:w-2/12 xl:max-w-56 aspect-[2/3]">
+                        <!-- Image -->
+                        <a href="/posts/details/@item.Url">
+                            <img src="~/img/@item.Image" loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-110 group-hover:opacity-90  dark:group-hover:opacity-50 duration-500">
+                        </a>
+                        <!-- Image Detail Container -->
+                        <div class="absolute w-full px-1 sm:px-3 md:px-5 bottom-0 text-xs md:text-sm lg:text-xl">
+                            <h3
+                                class="text-amber-300 font-bold uppercase opacity-5 text-center  text-lg lg:text-xl group-hover:text-amber-300 group-hover:opacity-100 group-hover:mb-5 lg:group-hover:mb-5 duration-500">
+                                @item.Title
+                            </h3>
+                            <!-- Tags Section -->
+                            <div class="flex flex-wrap justify-center gap-1">
+                                <!-- Adjust gap for smaller spacing between tags -->
+                                @foreach (var tag in item.tags)
+                                {
+                                    <span class="flex items-center text-cyan-400 px-2 py-0.5 rounded border-1 border-cyan-300 opacity-5 group-hover:text-cyan-300 group-hover:opacity-100 group-hover:mb-3 lg:group-hover:mb-2 duration-500
+                                          text-xs md:text-xs lg:text-sm xl:text-sm">
+                                        @tag.Text
+                                    </span>
+                                }
+                            </div>
+
+                            <!-- Vote and Read Section -->
+                            <div class="flex justify-between">
+                                <p
+                                    class="flex text-rose-500 text-sm  md:text-sm lg:text-base xl:text-lg opacity-5 group-hover:opacity-100 duration-500 break-words">
+                                    <span class="mr-2 text-xs  md:text-sm lg:text-base ">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                    @item.Vote
+                                </p>
+                                <div
+                                    class="flex  text-xs  md:text-sm lg:text-base xl:text-lg text-amber-400 opacity-5 bottom-2 group-hover:opacity-100 duration-500">
+                                    <a href="/posts/details/@item.Url">Oku <i class="fa-solid ml-1 fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+        </div>
+    </div>
+    <div class="space-y-5 mb-20 lg:space-y-4">
+        <!-- Titles -->
+        <div class=" group flex justify-between  mx-5 text-lg md:text-xl lg:text-2xll ">
+            <h2 class="text-gray-800  dark:text-gray-200  "><a href="/posts/category/mini-dizi"
+                    class="group-hover:text-amber-500 font-bold">Mini Dizi
+                </a>
+                <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+            </h2>
+            <h2
+                class="text-gray-800 pl-2 dark:text-gray-200 duration-500  text-center mt-1  text-sm md:text-base lg:text-lg">
+                <a href="/posts/category/mini-dizi" class="group-hover:text-amber-500 font-bold">Tümünü Gör</a>
+            </h2>
+
+        </div>
+
+
+        <!-- Images Container -->
+        <div class="grid  grid-cols-2 grid-rows-3 md:flex  gap-4 mx-5">
+            <!-- Image Template -->
+            @foreach (var item in Model)
+            {
+
+                @if (item.categories != null && item.categories.Any() && item.categories.Any(c => c.Url ==
+               "mini-dizi" && item.IsActive == true))
+                {
+
+
+                    <div class="group relative w-full md:w-1/5 lg:w-1/5 xl:w-2/12 xl:max-w-56 aspect-[2/3]">
+                        <!-- Image -->
+                        <a href="/posts/details/@item.Url">
+                            <img src="~/img/@item.Image" loading="lazy"
+                                class="w-full h-full object-cover group-hover:scale-110 group-hover:opacity-90  dark:group-hover:opacity-50 duration-500">
+                        </a>
+                        <!-- Image Detail Container -->
+                        <div class="absolute w-full px-1 sm:px-3 md:px-5 bottom-0 text-xs md:text-sm lg:text-xl">
+                            <h3
+                                class="text-amber-300 font-bold uppercase opacity-5 text-center  text-lg lg:text-xl group-hover:text-amber-300 group-hover:opacity-100 group-hover:mb-5 lg:group-hover:mb-5 duration-500">
+                                @item.Title
+                            </h3>
+                            <!-- Tags Section -->
+                            <div class="flex flex-wrap justify-center gap-1">
+                                <!-- Adjust gap for smaller spacing between tags -->
+                                @foreach (var tag in item.tags)
+                                {
+                                    <span class="flex items-center text-cyan-400 px-2 py-0.5 rounded border-1 border-cyan-300 opacity-5 group-hover:text-cyan-300 group-hover:opacity-100 group-hover:mb-3 lg:group-hover:mb-2 duration-500
+                                          text-xs md:text-xs lg:text-sm xl:text-sm">
+                                        @tag.Text
+                                    </span>
+                                }
+                            </div>
+
+                            <!-- Vote and Read Section -->
+                            <div class="flex justify-between">
+                                <p
+                                    class="flex text-rose-500 text-sm  md:text-sm lg:text-base xl:text-lg opacity-5 group-hover:opacity-100 duration-500 break-words">
+                                    <span class="mr-2 text-xs  md:text-sm lg:text-base ">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </span>
+                                    @item.Vote
+                                </p>
+                                <div
+                                    class="flex  text-xs  md:text-sm lg:text-base xl:text-lg text-amber-400 opacity-5 bottom-2 group-hover:opacity-100 duration-500">
+                                    <a href="/posts/details/@item.Url">Oku <i class="fa-solid ml-1 fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                }
+            }
+
+
+        </div>
+    </div>
+</section>
+
+<script>
+    var swiper = new Swiper(".progress-slide-carousel", {
+        loop: true,
+        fraction: true,
+
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".progress-slide-carousel .swiper-pagination",
+            type: "progressbar",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>

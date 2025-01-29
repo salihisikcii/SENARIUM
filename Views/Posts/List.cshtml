@@ -1,0 +1,53 @@
+@model List<Post>
+
+
+<div
+    class="relative flex flex-col w-full h-full text-gray-700 bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none rounded-lg bg-clip-border-2  overflow-x-auto mt-2" >
+    <table class="w-full text-center table-auto min-w-max">
+        <thead>
+            <tr class="border-b border-slate-500 bg-slate-200 dark:bg-gray-800">
+                <th class="p-4 text-base font-bold leading-none text-gray-800 dark:text-gray-200">Resim</th>
+                <th class="p-4 text-base font-bold leading-none text-gray-800 dark:text-gray-200">Başlık</th>
+                <th class="p-4 text-base font-bold leading-none text-gray-800 dark:text-gray-200">Oy</th>
+                <th class="p-4 text-base font-bold leading-none text-gray-800 dark:text-gray-200">Yorum Sayısı</th>
+                <th class="p-4 text-base font-bold leading-none text-gray-800 dark:text-gray-200">Durum</th>
+                <th class="p-4 text-base font-bold leading-none text-gray-800 dark:text-gray-200"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="hover:bg-slate-200 dark:hover:bg-gray-700">
+                    <td class="   py-2 align-middle  flex justify-center items-center">
+                        <img src="~/img/@item.Image" alt="Product 1" class="w-32 h-48 object-cover rounded" />
+                    </td>
+                    <td class="p-4 border-b border-slate-400 py-5 align-middle">
+                      <a href="/posts/details/@item.Url">  <p class="block font-semibold text-base text-gray-800 hover:text-blue-800 dark:text-gray-200">@item.Title</p></a>
+                    </td>
+                    <td class="p-4 border-b border-slate-400 py-5 align-middle">
+                        <p class="text-base text-gray-800 dark:text-gray-200">@item.Vote</p>
+                    </td>
+                    <td class="p-4 border-b border-slate-400 py-5 align-middle">
+                        <p class="text-base text-gray-800 dark:text-gray-200">@item.comments.Count()</p>
+                    </td>
+                    <td class="p-4 border-b border-slate-400 py-5 align-middle">
+                        <p class="text-base text-gray-800 dark:text-gray-200">    @(item.IsActive == true ? "Yayınlandı" : "Admin onayı bekleniyor")
+                        </p>
+                    </td>
+                    <td class="p-4 py-5 align-middle">
+                        <a href="/posts/edit/@item.PostId">
+
+                <button
+              class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-base font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              type="button">
+              <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+                <i class="fa-solid fa-pencil text-base text-gray-800 dark:text-gray-200"></i>
+              </span>
+            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

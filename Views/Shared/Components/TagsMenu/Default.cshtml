@@ -1,0 +1,40 @@
+@model List<Tag>
+
+@{
+    // Sayfa tipi bilgisini ViewData'dan alırken null kontrolü yap
+    var currentPageType = ViewData["PageType"]?.ToString() ?? "Default";
+}
+
+<div
+    class="bg-slate-200 dark:border-none border-2 border-gray-300 shadow-md dark:bg-gray-800 dark:text-gray-200 dark:!shadow-none p-4 mr-4 mt-5 rounded-xl">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 font-roboto">Tür</h3>
+    <div class="flex flex-wrap items-center mt-4">
+        @foreach (var tag in Model)
+        {
+
+            string currentCategoryUrl = ViewBag.CurrentCategoryUrl?.ToString() ?? string.Empty;
+            string linkUrl;
+            if (currentPageType == "Index")
+            {
+                linkUrl = Url.Action("Index", "Posts", new
+                {
+                    categoryurl = currentCategoryUrl ?? string.Empty,
+                    tagurl = tag?.Url ?? string.Empty
+                });
+            }
+            else
+            {
+                linkUrl = Url.Action("Popular", "Posts", new
+                {
+                    categoryurl = currentCategoryUrl ?? string.Empty,
+                    tagurl = tag?.Url ?? string.Empty
+                });
+            }
+
+            <a href="@linkUrl"
+                class="py-2 text-sm border-1 m-1 border-black text-gray-800 dark:text-gray-200 dark:border-gray-300 px-3 transition hover:bg-amber-500 hover:text-cyan-50">
+                @tag.Text
+            </a>
+        }
+    </div>
+</div>

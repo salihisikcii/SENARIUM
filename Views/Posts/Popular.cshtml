@@ -1,0 +1,229 @@
+﻿@using System.Net
+@model PostsViewModel
+<div class="py-8  bg-slate-200 dark:bg-gray-900 dark:text-gray-600 font-poppins">
+    <div class="flex text-2xl font-bold font-montserrat justify-center mb-4 text-gray-800 dark:text-gray-200">
+        <h2>
+            En Yüksek Oy Alan Senaryolar
+        </h2>
+    </div>
+    <div class=" 2xl:container mx-auto px-4 flex flex-wrap">
+        <div class="w-full md:w-4/12 lg:w-3/12 xl:w-3/12 mb-4">
+
+            <vc:categoires-menu></vc:categoires-menu>
+            <vc:tags-menu></vc:tags-menu>
+
+        </div>
+        <div class="w-full md:w-5/12 lg:w-6/12 xl:w-6/12">
+
+
+            <div class=" grid grid-cols-1 xl:grid-cols-2 ">
+
+                @foreach (var item in Model.Posts.OrderByDescending(p => p.Vote))
+                {
+                    if (item.IsBest)
+                    {
+
+                        <div
+                            class="rounded-xl pt-3 px-3 m-2 bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none  ">
+                            <div class="flex justify-center ">
+                                <a href="/posts/details/@item.Url"
+                                    class=" object-cover  rounded-xl sm:w-5/12 md:w-10/12 overflow-hidden">
+
+                                    <img class=" w-full h-96  hover:scale-110 transition duration-500" src="~/img/@item.Image">
+                                </a>
+                            </div>
+
+
+                            <div class="py-3 px-1">
+                                <div class=" flex justify-center items-center">
+                                    <div class="">
+                                        <a href="/posts/details/@item.Url">
+                                            <h2
+                                                class="block text-2xl font-semibold text-gray-900  dark:text-gray-300 hover:text-indigo-700 transition">
+                                                @item.Title
+                                            </h2>
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                                <p class="text-gray-900 dark:text-gray-300 text-sm mt-2">
+                                    @if (!string.IsNullOrEmpty(item.Description))
+                                    {
+                                        // HTML etiketlerinden ve HTML varlıklarından arındırılmış düz metin
+                                        var plainText = StripHtmlAndDecode(item.Description);
+                                        var words = string.Join(" ", plainText.Split(' ').Take(30)); // İlk 30 kelimeyi al
+
+                                        @words
+
+                                        @if (plainText.Split(' ').Length > 30)
+                                        {
+                                            <span>...</span>
+                                        }
+
+                                        <!-- Eğer daha fazla kelime varsa "..." ekle -->
+                                        <a href="/details/@item.Url"
+                                            class="text-gray-500 text-decoration-underline hover:text-indigo-700">Devamını oku</a>
+                                        <!-- 'Devamını oku' linki ile tam metne gidilecek -->
+                                    }
+                                </p>
+
+                                <div class=" flex mt-3   justify-around ">
+
+                                    <div class="flex text-rose-800 text-base items-end">
+                                        <span class="mr-2 text-base">
+                                            <i class="fa-solid fa-heart"></i> </span>
+                                        @item.Vote
+                                    </div>
+
+
+                                    <div class="flex text-gray-900  dark:text-gray-300 text-sm items-center">
+                                        <span class="mr-2 text-sm">
+                                            <i class="fa-solid fa-user"></i>
+                                        </span>
+                                        @if (item.User != null)
+                                        {
+                                            @item.User.FullName
+                                        }
+                                        else
+                                        {
+                                            <span>Kullanıcı bilgisi yok</span>
+                                        }
+                                    </div>
+                                    <div class="flex text-gray-900  dark:text-gray-300 text-sm items-center">
+                                        <span class="mr-2 text-sm">
+                                            <i class="fa-solid fa-clock"></i>
+                                            @item.PublishedOn.ToString("dd MMMM yyyy")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+
+
+                }
+            </div>
+            @{
+                int currentPage = ViewBag.CurrentPage2 ?? 1;
+                int totalPages = ViewBag.TotalPages2 ?? 1;
+            }
+
+            <div class="flex justify-center space-x-2 my-4">
+                @if (currentPage > 1)
+                {
+                    <a href="@Url.Action("Popular", new { categoryUrl = ViewBag.CurrentCategoryUrl, tagUrl = Model.CurrentTag, page = currentPage - 1 })"
+                        class="px-3 py-1 bg-slate-200 border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none text-gray-800 rounded dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700">Önceki</a>
+                }
+
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    <a href="@Url.Action("Popular", new { categoryUrl = ViewBag.CurrentCategoryUrl, tagUrl = Model.CurrentTag, page = i })"
+                        class="px-3 py-1   border-2 border-gray-300 dark:border-gray-600 shadow-md  rounded  @(i == currentPage ? "bg-blue-500 text-white" : "bg-slate-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none   hover:bg-gray-300 dark:hover:bg-gray-700")">
+                        @i
+                    </a>
+                }
+
+                @if (currentPage <= totalPages - 1)
+                {
+                    <a href="@Url.Action("Popular", new { categoryUrl = ViewBag.CurrentCategoryUrl, tagUrl = Model.CurrentTag, page = currentPage + 1 })"
+                        class="px-3 py-1 bg-slate-200 border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none text-gray-800 rounded dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700">Sonraki</a>
+                }
+            </div>
+        </div>
+        <div class="w-full md:w-3/12 lg:w-3/12 xl:w-3/12">
+            <!-- ====== Page Title Section Start -->
+            <section
+                class="bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none rounded-md mx-3 my-3 py-9">
+                <div class="mx-auto px-4 sm:container">
+                    <div class="border-primary border-l-[5px] pl-4">
+                        <h2 class="text-gray-800 mb-2 text-xl font-semibold dark:text-gray-200">
+                            Her Ay Yenilenen Oy Sistemi
+                        </h2>
+                        <p class="text-body-color text-gray-800 dark:text-gray-200 text-sm font-medium">
+                            Her ay en çok oy alan ilk 10 senaryo en listesine eklenir.
+                            <a href="/home/hakkimda" class="text-cyan-500 underline">Detaylı bilgi</a>
+                        </p>
+
+
+                    </div>
+                </div>
+            </section>
+            <section
+                class="bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none rounded-md mx-3 my-3 py-9">
+                <div class="mx-auto px-4 sm:container">
+                    <div class="border-primary border-l-[5px] pl-4">
+
+                        <p class="text-body-color text-gray-800 dark:text-gray-200 text-sm font-bold">
+                            Oylama sistemnin yenilenmesine Kalan süre
+                        </p>
+                        <div id="countdown" class="text-gray-800 dark:text-gray-200 text-sm font-medium mt-2">
+                            Kalan süre hesaplanıyor...
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- ====== Page Title Section End -->
+            <vc:new-posts></vc:new-posts>
+
+        </div>
+
+        @functions {
+            public static string StripHtmlAndDecode(string input)
+            {
+                // HTML etiketlerini temizle
+                string noHtml = System.Text.RegularExpressions.Regex.Replace(input, "<.*?>", string.Empty);
+                // HTML varlıklarını decode ederek temiz metne çevir
+                return WebUtility.HtmlDecode(noHtml);
+            }
+        }
+
+
+    </div>
+</div>
+
+<script>
+    function updateCountdown() {
+        // Şu anki tarih
+        const now = new Date();
+
+        // Bir sonraki ayın 1'ini hesaplayın
+        let nextMonth = now.getMonth() + 1;
+        let nextYear = now.getFullYear();
+
+        // Eğer şu anki ay Aralık ise (11), yılı bir artır ve ayı Ocak yap
+        if (nextMonth > 11) {
+            nextMonth = 0; // Ocak
+            nextYear++;
+        }
+
+        const nextMonthFirstDay = new Date(nextYear, nextMonth, 1);
+
+        // Kalan süreyi milisaniye olarak hesaplayın
+        const timeDiff = nextMonthFirstDay - now;
+
+        // Eğer negatif bir sonuç alırsanız (örneğin ay değişiminden hemen sonra), durumu kontrol edin
+        if (timeDiff <= 0) {
+            document.getElementById('countdown').textContent = "Yeni ay başladı!";
+            return;
+        }
+
+        // Gün, saat, dakika ve saniye olarak ayrıştırın
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        // Sonucu formatlayıp HTML'e ekleyin
+        document.getElementById('countdown').textContent =
+            `${days} gün ${hours} saat ${minutes} dakika ${seconds} saniye`;
+
+        // 1 saniyede bir güncelleyin
+        setTimeout(updateCountdown, 1000);
+    }
+
+    // Sayfa yüklendiğinde başlatın
+    updateCountdown();
+</script>

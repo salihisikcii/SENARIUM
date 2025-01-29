@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/db077b50-39c8-4528-b10a-de8fe3ff2fea/resourceGroups/senarium_group/providers/Microsoft.Web/sites/senarium"
+}

@@ -1,0 +1,584 @@
+﻿@model PostDetailsModel
+@if (ViewBag.CurrentUser == false)
+{
+
+    <div class="fixed inset-0 flex items-center justify-center backdrop-blur-sm   z-50">
+        <div class="bg-gray-50 dark:bg-gray-900 dark:text-gray-200 p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+            <h2 class="text-lg font-bold mb-4">UYARI!</h2>
+            <p class="text-sm mb-3 font-bold">
+                Bu senaryo, yalnızca yasal çerçevede incelemek amacıyla paylaşılmıştır. Tüm hakları yazara aittir ve izinsiz
+                kopyalanması, dağıtılması veya paylaşılması yasaktır.
+            </p>
+            <p class="mt-1 mb-4">
+                Senaryoyu görüntülemek için, bu şartları kabul ettiğinizi onaylamanız gerekmektedir.</p>
+            <form method="post" asp-action="AcceptCopyright" class="space-x-4">
+                <button type="submit" name="accept" value="true"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Kabul Et</button>
+                <button type="submit" name="accept" value="false"
+                    class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Reddet</button>
+            </form>
+        </div>
+    </div>
+}
+<!-- Bulanık Katman -->
+@* <img class="absolute w-full h- blur-sm z-0 " src="~/img/profilePageBg.png"> *@
+
+
+<div class="py-12  bg-slate-200 z-10  dark:bg-gray-900 dark:text-gray-600 font-poppins">
+
+    <div class=" mx-3  z-10 flex flex-wrap justify-center">
+
+        <div class=" w-9/12 md:w-6/12 z-10 lg:w-2/12 xl:w-2/12  mt-8">
+            <div
+                class=" flex flex-col items-center rounded-3xl mt-2  py-4 px-3 bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none">
+                <div class="relative flex h-32 w-full justify-center rounded-xl bg-cover">
+                    <img src='~/img/profilBg.png' class="absolute flex h-32 w-full justify-center rounded-xl bg-cover">
+                    <div
+                        class="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
+                        @if (Model.Post.User != null && Model.Post.User.Image != null)
+                        {
+                            <img class="h-full w-full rounded-full" src='~/img/@Model.Post.User.Image' alt="" />
+                        }
+                        else
+                        {
+                            <img class="h-full w-full rounded-full" src='~/img/avatar1.jpg' alt="" />
+                        }
+                    </div>
+                </div>
+                <div class="mt-16 flex flex-col items-center">
+                    <h4 class="text-xl font-bold text-navy-700 dark:text-gray-200">
+                        <a href="/users/profile/@Model.Post.User!.UserName">
+                            @Model.Post.User.FullName
+
+                        </a>
+                    </h4>
+                    <p class="text-base font-normal text-gray-600 dark:text-gray-400">@ViewBag.UserRole</p>
+                </div>
+                <div class="mt-3 mb-1 flex   justify-between">
+                    <div class="flex flex-col items-center justify-center">
+                        <p class="text-xl font-bold text-navy-700 dark:text-gray-200">@Model.Post.User.posts.Count()</p>
+                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">Senaryo</p>
+                    </div>
+
+                </div>
+                <div class="   shadow-sm rounded-xl  mb-3">
+                    <div class="flex mt-4">
+                        <a href="mailto:@Model.Post.User.Email"
+                            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 dark:hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </a>
+
+
+
+                        <a href="@Model.Post.User.Linkedin" target="_blank"
+                            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800   dark:hover:text-indigo-700 dark:text-gray-300">
+                            <i class="fa-brands fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="w-full md:w-11/12 lg:w-7/12 xl:w-7/12 z-10 mt-5   font-poppins">
+            <div class=" mx-auto px-4 flex">
+
+                <div class=" w-full">
+                    <div class="flex justify-center">
+
+
+                        <div
+                            class="flex flex-col w-full rounded-lg bg-slate-200  text-surface shadow-secondary-1  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none md:max-w-xl md:flex-row">
+                            <div class="flex justify-center">
+
+                                <img class="lg:w-48 rounded-t-lg  h-68 w-8/12 md:!rounded-none md:!rounded-s-lg"
+                                    src="~/img/@Model.Post.Image" alt="" />
+                            </div>
+                            <div class="flex flex-col justify-start p-6 ">
+                                <h5 class="mb-2 text-2xl text-gray-900 dark:text-gray-200 font-bold">@Model.Post.Title
+                                </h5>
+                                <p class="mb-4 text-base">
+                                <p class="flex text-base text-gray-900 dark:text-gray-200">
+                                    <span class="font-semibold mr-1">Tür:</span>
+                                    <span>
+                                            @foreach (var item in Model.Post.categories)
+                                            {
+                                            <a href="/">
+                                                <span class="text-amber-500 "> • </span> @item.Text
+                                            </a>
+                                            }
+                                    </span>
+                                <p class="flex text-base mt-2 text-gray-900 dark:text-gray-200">
+                                    <span class="font-semibold mr-2">Format:</span>
+                                    <span>
+                                                @foreach (var item in Model.Post.tags)
+                                                {
+                                            <a href="/posts/tag/@item.Url">
+                                                <span class="text-blue-500 "> • </span> @item.Text
+                                            </a>
+                                                }
+                                    </span>
+                                </p>
+                                <p class="flex text-base mt-2 text-gray-900 dark:text-gray-200">
+                                    <span class="font-semibold mr-2">Yayınlama:</span>
+                                            @if (@Model.Post.PdfActive == true)
+                                            {
+                                        <span> Senaryo ve Özet </span>
+                                            }
+                                            else
+                                            {
+                                        <span> Sadece Özet</span>
+                                            }
+                                </p>
+
+                                <!-- Yayınlanma Tarihi -->
+                                <p class="flex text-base text-gray-900 mt-2 dark:text-gray-200">
+                                    <span class="font-semibold mr-2">Yayınlanma Tarihi:</span>
+                                    <span>@Model.Post.PublishedOn.ToString("dd MMMM yyyy")</span>
+                                </p>
+                                </p>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div
+                        class="rounded-xl h-auto bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none mt-3   overflow-hidden ">
+                        <div class="p-4  ">
+
+                            <h2 class="block text-xl font-semibold font-roboto  text-gray-900 dark:text-gray-200 ">
+                                Özet
+                            </h2>
+
+                            <div class="text-gray-800 dark:text-gray-200 text-base mt-2">
+
+                                <p class=" text-base mt-2">
+                                    @Html.Raw(Model.Post.Description)
+
+                                </p>
+                            </div>
+
+                        </div>
+                        <hr class="my-3 mx-10">
+
+                        <div class="  m-3">
+                            @if (Model.Post.LikePost == null)
+                            {
+
+                                <button id="likeButton" data-post-id="@Model.Post.PostId" class="like-button bg-slate-200 text-red-800 dark:bg-gray-800 rounded-full border-2 border-red-900 p-2.5 text-center text-sm shadow-sm 
+                         transition-all duration-300 transform hover:scale-105 active:scale-95" type="button"> <i
+                                        class="fa-solid fa-heart mr-1"></i><span id="voteCount">@Model.Post.Vote</span>
+                                </button>
+                            }
+                            else if (Model.Post.LikePost.kontrol == false)
+                            {
+                                <button id="likeButton" data-post-id="@Model.Post.PostId" class="like-button bg-slate-200 text-red-800 dark:bg-gray-800 rounded-full border-2 border-red-900 p-2.5 text-center text-sm shadow-sm 
+                            transition-all duration-300 transform hover:scale-105 active:scale-95" type="button"> <i
+                                        class="fa-solid fa-heart mr-1"></i><span id="voteCount">@Model.Post.Vote</span>
+                                </button>
+                            }
+                            else
+                            {
+
+                                <button id="likeButton" data-post-id="@Model.Post.PostId" class="like-button bg-red-800 text-white rounded-full border-2 border-red-900  p-2.5 text-center text-sm shadow-sm 
+                            transition-all duration-300 transform hover:scale-105 active:scale-95" type="button"> <i
+                                        class="fa-solid fa-heart mr-1"></i><span id="voteCount">@Model.Post.Vote</span>
+                                </button>
+                            }
+
+                        </div>
+                    </div>
+                    @if (Model.Post.IsRequestRequired || Model.ActiveUser == Model.Post.UserId)
+                    {
+                        <div
+                            class="rounded-xl bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none  overflow-hidden h-auto my-3 ">
+                            <div class="h-130 lg:h-164 ">
+
+                                <div class=" h-auto pdfviewer p-0">
+                                    <div class=" h-12 items-center ">
+                                        <div class="flex item-center mt-3 justify-between mx-1">
+                                            <div class=" flex justify-between items-center ">
+
+                                                <button type="button" onclick="pdfViewer.first()" class="h-8 w-8 mr-1 text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400">
+                                                    <span> &lt;&lt; </span>
+                                                </button>
+
+                                                <button type="button" onclick="pdfViewer.prev()" class="h-8 w-8 mr-1 text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400">
+                                                    <span> &lt; </span>
+                                                </button>
+
+
+
+                                                <span class="pageno text-sm  mr-1 text-gray-800 dark:text-gray-200"></span>
+                                                <button type="button" onclick="pdfViewer.next()" class="h-8 w-8 mr-1 text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400"> <span>
+                                                        > </span> </button>
+                                                <button type="button" onclick="pdfViewer.last()" class="h-8 w-8 mr-1 text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400">
+                                                    <span>
+                                                        >> </span> </button>
+                                            </div>
+
+                                            <div class="flex justify-between items-center ">
+                                                <button type="button" onclick="pdfViewer.setZoom('out')" class="h-8 w-8 mr-1  text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400">
+                                                    <span>
+                                                        - </span> </button>
+
+                                                <span
+                                                    class="zoomval text-sm mr-1 text-gray-800 dark:text-gray-200">100%</span>
+                                                <button type="button" onclick="pdfViewer.setZoom('in')" class="h-8 w-8 mr-1  text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400">
+                                                    <span>
+                                                        + </span> </button>
+
+                                            </div>
+                                            <div class="flex justify-between items-center">
+
+                                                <button type="button" onclick="pdfViewer.setZoom('width')" class="h-8 w-8 mr-1  text-sm font-medium text-gray-900
+                                          bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400">
+                                                    <i class="fa-solid fa-up-right-and-down-left-from-center"></i> </button>
+
+                                                <button type="button" onclick="pdfViewer.setZoom('fit')"
+                                                    class="h-8 w-8 mr-1 text-sm font-medium text-gray-900
+                                             bg-slate-200 rounded-full border-1 border-slate-400 hover:bg-slate-300 hover:text-blue-400  dark:bg-gray-600 dark:text-gray-100
+                                           dark:border-gray-400 dark:hover:bg-gray-500 dark:hover:text-blue-400 hidden md:block ">
+                                                    <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="pdfjs-viewer h-128 lg:h-134">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (!Model.HasRequested)
+                    {
+                        <div
+                            class="m-3 mx-auto max-w-screen-lg rounded-md py-3  bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none overflow-hidden">
+                            <div class=" text-center">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-6">
+                                    Senaryo PDF'ini Görebilmek İçin Senaristin Onayını Almanız Gerekiyor
+                                </h3>
+                                <form asp-action="RequestAccess" method="post">
+                                    <input type="hidden" name="postId" value="@Model.Post.PostId" />
+                                    <button type="submit"
+                                        class="w-1/3 text-base bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-300 ease-in-out">
+                                        Erişim İzni İste
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    }
+                    else
+                    {
+                        <div
+                            class="m-4 mx-auto max-w-screen-lg rounded-md  bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none overflow-hidden">
+                            <div class="p-6 text-center">
+                                <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                                    PDF görüntüleme talebiniz onay bekliyor.
+                                </h3>
+                            </div>
+                        </div>
+                    }
+
+
+                    @if (@Model.Post.IsBest == true)
+                    {
+                        <section>
+
+                            <div
+                                class="m-4 mx-auto max-w-screen-lg rounded-md   bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none">
+                                <div class="relative flex h-full  w-full text-gray-600 flex-col md:flex-row">
+                                    <div class=" flex justify-center items-center  w-full md:w-4/12 md:pt-1 py-4  ">
+                                        <img class=" w-44 h-56  rounded-md  shadow-lg" src="~/img/@Model.Post.Image"
+                                            alt="" />
+                                    </div>
+                                    <div class="relative p-8 w-full md:w-8/12">
+                                        <div class="flex flex-col md:flex-row">
+                                            <h2 class="mb-2 text-2xl dark:text-gray-200 font-black">@Model.Post.Title</h2>
+
+                                        </div>
+                                        <p class="flex ">
+                                            @foreach (var item in Model.Post.tags)
+                                            {
+                                                <span class="mr-2 dark:text-gray-300"><span class="text-blue-500 text-lg"> •
+                                                    </span>@item.Text</span>
+
+
+                                            }
+                                        </p>
+                                        <p class="mt-3 font-sans text-base dark:text-gray-300 tracking-normal"><i
+                                                class="fa-solid fa-circle-info"></i> Satın alma işlemi tamamlandıktan sonra,
+                                            tüm haklar satın alan kişiye devredilir. İçerik siteden kaldırılır ve yazar,
+                                            telif hakkı talebinde bulunamaz.</p>
+                                        <div class="flex flex-col md:flex-row md:items-end">
+                                            <p class="mt-6 text-4xl dark:text-gray-200 font-black">@Model.Post.Price<sup
+                                                    class="align-middle text-base"> ₺</sup></p>
+                                        </div>
+                                        <div class="mt-8 flex flex-col sm:flex-row">
+                                            <a href="/posts/Payment?price=@Model.Post.Price&title=@Model.Post.Title">
+                                                <button
+                                                    class="mr-2 mb-4 flex cursor-pointer items-center justify-center rounded-md bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl py-2 px-8 text-center text-white transition duration-150 ease-in-out hover:translate-y-1 ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    </svg>
+                                                    Satın Al
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </section>
+                    }
+
+                    <div
+                        class="p-4 bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none  rounded-xl mb-3 ">
+
+
+                        <h3 class="text-base uppercase font-roboto mb-4 text-gray-800 dark:text-gray-200">Yorumlar</h3>
+                        <p id="CommentCount" class="text-sm text-gray-800 dark:text-gray-200 mb-2">
+                            @Model.Post.comments.Count() Adet yorum</p>
+                        <hr class="mb-3">
+
+                        <div id="comments" class="space-y-5 text-gray-800 dark:text-gray-200">
+                            @foreach (var comment in Model.Post.comments)
+                            {
+
+                                <div class="flex items-center border-b pb-4 border-gray-500">
+                                    <div class="w-12 h-12 flex-shrink-0">
+                                        @if (comment.user != null && comment.user.Image != null)
+                                        {
+                                            <img class="h-full w-full rounded-full" src='~/img/@comment.user.Image' alt="" />
+                                        }
+                                        else
+                                        {
+                                            <img class="h-full w-full rounded-full" src='~/img/avatar1.jpg' alt="" />
+                                        }
+                                    </div>
+
+                                    <div class="flex-grow pl-4">
+                                        @{
+                                            string role = comment.user != null && Model.CommentUserRoles != null &&
+                                            Model.CommentUserRoles.ContainsKey(comment.user.Id) ?
+                                            Model.CommentUserRoles[comment.user.Id].FirstOrDefault() ?? "Unknown" : "Unknown";
+                                            string roleClass = role switch
+                                            {
+                                                "Üye" => "text-cyan-500 border-cyan-500",
+                                                "Senarist" => "text-yellow-500 border-yellow-500",
+                                                "Prodüktör" => "text-pink-500 border-pink-500",
+                                                _ => "text-gray-400 border-gray-300" // Default class
+                                            };
+                                        }
+                                        <h4 class="text-base font-roboto">
+                                            @if (comment.user != null)
+                                            {
+                                                <a href="/users/profile/@comment.user.UserName">@comment.user.FullName</a>
+                                            }
+                                            else
+                                            {
+                                                <span>Unknown User</span>
+                                            }
+                                            <span class="items-center ml-1 px-2 py-0.5 rounded border-1 text-xs @roleClass">
+                                                @role
+                                            </span>
+                                        </h4>
+                                        <p class="text-xs text-gray-400 ">@comment.PublishedOn.ToString("dd MMMM yyyy")</p>
+                                        <p class="text-sm font-600 mt-1"> @comment.Text</p>
+
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+
+                            <form action="/posts/AddComment" class="mt-8">
+                                <input type="hidden" id="PostId" name="PostId" value="@Model.Post.PostId">
+
+                                <h5 class="text-base mb-1 text-gray-800 dark:text-gray-200">Yorum Yap</h5>
+                                <textarea
+                                    class="w-full border border-gray-500 bg-gray-50 text-gray-800 dark:text-gray-200 dark:bg-gray-800 px-1 rounded-lg shadow-lg h-28 focus:border-gray-950"
+                                    type="Text" name="Text" id="Text"></textarea>
+                                <div class="mt-2">
+                                    <button id="btnYorumKayit" type="submit"
+                                        class="text-white bg-gray-900  py-2 px-3  uppercase shadow-sm text-sm border m-1 rounded-md border-gray-500  hover:bg-gray-500">
+                                        Kaydet</button>
+
+                                </div>
+
+                            </form>
+                        }
+                        else
+                        {
+                            <p> Yorum yapabilmek için giriş yapmalısınız. <a href="/account/login"
+                                    class="text-blue-400">Giriş
+                                    Yap</a> </p>
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="w-full md:w-6/12 lg:w-3/12 xl:w-3/12  mt-8  z-10 ">
+            <vc:new-posts></vc:new-posts>
+
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import * as pdfjsLib from '/pdfjs/build/pdf.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdfjs/build/pdf.worker.mjs';
+
+    // PDFjsViewer ayarları
+    window.pdfViewer = new PDFjsViewer($(".pdfjs-viewer"), { // Değişkeni global olarak tanımladık
+        onZoomChange: function (zoom) {
+            zoom = parseInt(zoom * 10000) / 100;
+            $(".zoomval").text(zoom + "%");
+        },
+        onActivePageChanged: function (page, pageno) {
+            $(".pageno").text(pageno + "/" + this.getPageCount());
+        }
+    });
+
+    // Modelden gelen PDF yolunu ayarla
+    const pdfUrl = '@Url.Content("~/pdf/" + Model.Post.Content)';
+
+    pdfViewer
+        .loadDocument(pdfUrl)
+        .then(function () {
+            pdfViewer.setZoom("fit");
+        });
+
+    $(document).ready(function () {
+
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#likeButton').click(function () {
+            var button = $(this); // Tıklanan butonu referans al
+            var postId = button.data('post-id'); // Post ID'sini al
+            var heartIcon = button.find('i'); // Kalp ikonunu bul
+
+            // AJAX isteği gönder
+            $.ajax({
+                url: '@Url.Action("LikePost", "Posts")', // Controller'daki metodu çağır
+                type: 'POST',
+                data: { postId: postId }, // Gönderilecek veri
+                success: function (response) {
+                    if (response.voteCount !== undefined) {
+                        // Beğeni sayısını güncelle
+                        $('#voteCount').text(response.voteCount);
+
+                        // Renk değişimi
+                        if (button.hasClass('bg-red-800')) {
+                            button
+                                .removeClass('bg-red-800 text-white')
+                                .addClass('bg-slate-200 text-red-800 dark:bg-gray-800');
+                        } else {
+                            button
+                                .removeClass('bg-slate-200 text-red-800 dark:bg-gray-800')
+                                .addClass('bg-red-800 text-white');
+                        }
+
+                        // Zıplama animasyonu
+                        heartIcon.css({ transform: 'translateY(-10px)', opacity: 0.8, transition: '0.3s' });
+                        setTimeout(function () {
+                            heartIcon.css({ transform: 'translateY(0)', opacity: 1, transition: '0.3s' });
+                        }, 300);
+                    }
+                },
+
+            });
+        });
+    });
+</script>
+
+
+
+
+
+@section Scripts {
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnYorumKayit").click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("AddComment")',
+                    dataType: 'json',
+                    data: {
+                        PostId: $('#PostId').val(),
+                        UserName: $('#UserName').val(),
+                        fullName: $('#fullName').val(),
+                        Text: $('#Text').val(),
+                    },
+                    success: function (yorum) {
+                        console.log(yorum);
+                        var date = new Date(yorum.publishedOn);
+
+                        // Kullanıcının resmi varsa onu kullan, yoksa varsayılan resmi kullan
+                        var profileImage = yorum.user && yorum.user.Image ? yorum.user.Image : 'avatar1.jpg';
+
+                        $("#comments").append(`
+                            <div class="flex items-center border-b pb-5 border-gray-500">
+                                <div class="w-12 h-12 flex-shrink-0">
+                                    <img class="h-full w-full rounded-full" src='/img/${profileImage}' alt="" />
+                                </div>
+                                <div class="flex-grow pl-4">
+                                    <h4 class="text-base font-roboto">
+                                        <a href="/profile/${yorum.username}">${yorum.fullName}</a>
+                                    </h4>
+                                    <p class="text-xs text-gray-400">${date.toLocaleDateString()}</p>
+                                    <p class="text-sm font-600 mt-1">${yorum.text}</p>
+
+                                </div>
+                            </div>
+                        `);
+                        $("#UserName").val('');
+                        $("#Text").val('');
+
+                        var commentcount = parseInt($("#CommentCount").text());
+                        $("#CommentCount").text(commentcount + 1);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+}

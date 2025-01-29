@@ -1,0 +1,484 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Proje </title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <!-- Diğer CSS dosyaları -->
+    <link rel="stylesheet" href="~/css/style2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="https://unpkg.com/flowbite@1.6.3/dist/flowbite.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/dealfonso/pdfjs-viewer@1.1/pdfjs-viewer.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dealfonso/pdfjs-viewer@1.1/pdfjs-viewer.min.css">
+</head>
+
+<body class="font-poppins min-h-screen flex flex-col bg-slate-200 dark:bg-gray-900">
+    @{
+        var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+        var action = ViewContext.RouteData.Values["action"]?.ToString();
+        var isHomePage = controller == "Home" && action == "Index";
+    }
+
+    <nav
+        class="@(isHomePage ? "bg-black bg-opacity-25 text-white absolute z-10 w-full flex items-center font-bold h-14" : "bg-slate-200 shadow-sm text-gray-800 dark:bg-gray-900 dark:text-gray-200 w-full flex items-center font-bold h-16")">
+        <div class=" mx-3 w-full  flex  items-center">
+
+            <button id="theme-toggle" type="button"
+                class="text-cyan-900 bg-gray-300 dark:text-amber-300 hover:bg-slate-500 dark:hover:bg-gray-400 dark:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                </svg>
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        fill-rule="evenodd" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+            <a href="/"
+                class="font-montserrat font-extrabold text-amber-500 underline hover:text-amber-600 text-xl md:text-2xl ml-4">SENARIUM</a>
+
+
+            <div class="ml-9 lg:flex space-x-5 hidden lg:text-base">
+                <a href="/posts/Index" class="flex items-center hover:text-indigo-700 transition ">
+                    <span class="mr-2"> <i class="fa-solid fa-scroll"></i> </span>
+                    Senaryolar
+                </a>
+
+
+            </div>
+
+            <div class="ml-5 lg:flex space-x-3 hidden  lg:text-base">
+                <a href="/posts/popular" class="flex items-center hover:text-indigo-700 transition ">
+                    <span class="mr-2"> <i class="fa-solid fa-star"></i> </span>
+                    Popülerler
+                </a>
+            </div>
+
+            <div class="ml-5 lg:flex space-x-3 hidden  lg:text-base">
+                <a href="/posts/zamandamgasi" class="flex items-center hover:text-indigo-700 transition ">
+                    <span class="mr-2"> <i class="fa-solid fa-fingerprint"></i></span>
+                    Zaman Damgası
+                </a>
+            </div>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="ml-9 lg:flex space-x-5 hidden  lg:text-sm">
+
+                        <a class="hover:text-indigo-700 whitespace-nowrap" asp-controller="Users"
+                            asp-action="userlist"><span>Kullanıcı Listesi</span>
+                        </a>
+                    </div>
+
+                    <div class="ml-9 lg:flex space-x-5 hidden  lg:text-sm">
+                        <a class="hover:text-indigo-700 whitespace-nowrap" asp-controller="Roles" asp-action="Index"><span>Rol
+                                Listesi</span></a>
+                    </div>
+                }
+            }
+
+            <div class="flex items-center ml-auto">
+                <div class="mr-2">
+
+                    <form action="@Url.Action("Search", "Posts")" method="get">
+                        <div
+                            class="flex rounded-full border-2 border-amber-500 overflow-hidden max-w-40 max-h-7 md:max-h-8  md:max-w-md  font-[sans-serif]">
+                            <input type="text" name="searchTerm" placeholder="Senaryo Ara" class="w-full  @(isHomePage ? "placeholder-gray-300 text-white": "placeholder-gray-500 text-gray-800" ) dark:text-gray-200  dark:placeholder-gray-400
+                                         outline-none bg-transparent  text-sm px-2 py-1" />
+                            <button type="submit"
+                                class="flex items-center justify-center bg-amber-500 hover:bg-amber-600 px-3">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                @if (User.Identity!.IsAuthenticated)
+                {
+                    <div class="ml-2 relative xl:block hidden">
+                        <!-- Dropdown Button -->
+                        <button type="button"
+                            class="flex items-center text-base bg-transparent @(isHomePage ? "text-gray-100": "text-gray-800" ) dark:text-gray-100  hover:text-indigo-700"
+                            id="user-menu-button"><i class="fa-solid fa-user mr-2"></i> @User.Identity.Name <i
+                                class="fa-solid fa-angle-down ml-1"></i>
+                            <span class="sr-only">Open user menu</span>
+
+                        </button>
+
+
+                        <!-- Dropdown Menu -->
+                        <div class="z-50 hidden absolute right-0 mt-2 w-48 text-base list-none bg-slate-100 divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-800 dark:divide-gray-600"
+                            id="user-dropdown">
+                            <ul class="py-2">
+                                <li>
+                                    <a href="/users/profile/@User.Identity.Name"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"><i
+                                            class="fa-solid fa-user mr-2"></i>Profil</a>
+                                </li>
+                                <li>
+                                    <a href="/posts/create"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"><i
+                                            class="fa-solid fa-pen-fancy mr-2"></i> Senaryo
+                                        Yayınla</a>
+                                </li>
+                                <li>
+                                    <a href="/posts/list"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"><i
+                                            class="fa-solid fa-book mr-2"></i>Senaryolarım</a>
+                                </li>
+                                <li>
+                                    <a href="/posts/requests"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"><i
+                                            class="fa-solid fa-bell mr-2"></i>Bildirimler</a>
+                                </li>
+
+                                <li>
+                                    <a href="/account/logout"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"><i
+                                            class="fa-solid fa-right-from-bracket mr-2"></i>Çıkış
+                                        Yap</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="flex gap-1">
+                        <button
+                            class="md:flex hidden  p-0.5 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-blue-300 whitespace-nowrap">
+                            <a href="/account/login"
+                                class="relative px-4 py-1.5 transition-all ease-in duration-200 bg-slate-200 dark:bg-gray-900 text-gray-800 font-bold dark:text-gray-200 rounded-md group-hover:bg-opacity-0">
+                                Giriş Yap
+                            </a>
+                        </button>
+                        <button
+                            class="md:flex hidden p-0.5 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-blue-300 whitespace-nowrap">
+                            <a href="/account/create"
+                                class="relative px-4 py-1.5 transition-all ease-in duration-200 bg-slate-200 dark:bg-gray-900 text-gray-800 font-bold dark:text-gray-200 rounded-md group-hover:bg-opacity-0">
+                                Kayıt Ol
+                            </a>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="text-xl  cursor-pointer ml-4 xl:hidden block hover:text-indigo-700 @(isHomePage ? "text-gray-100": "text-gray-800" )  dark:text-gray-200 dark:hover:text-indigo-700 transition"
+                id="open_sidebar">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+    </nav>
+    @if (!isHomePage)
+    {
+        <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+    }
+
+
+    <div class="fixed w-full h-full z-50  bg-opacity-25 left-0 top-0 opacity-0 invisible transition-all duration-500 xl:hidden"
+        id="sidebar_wrapper">
+
+        <div class="fixed top-0 w-72 h-full bg-slate-300 text-gray-900 dark:bg-gray-800  dark:text-gray-200 hover:text shadow-sm flex flex-col transition-all duration-500 "
+            id="sidebar">
+
+
+            <div class="lg:hidden">
+
+
+                <div class="font-roboto">
+                    <a href="/Posts/Index"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition ">
+                        <span class="mr-2"> <i class="fa-solid fa-cloud"></i> </span>
+                        Senaryolar
+                    </a>
+                </div>
+                <div class="font-roboto">
+                    <a href="/posts/popular"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition ">
+                        <span class="mr-2"> <i class="fa-solid fa-star"></i> </span>
+                        Popüler
+                    </a>
+                </div>
+                <div class="font-roboto">
+                    <a href="blog.html"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition ">
+                        <span class="mr-2"> <i class="fa-solid fa-address-book"></i> </span>
+                        Hakkında
+                    </a>
+                </div>
+
+
+
+                <div class="font-roboto">
+                    <a href="/posts/requests"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition ">
+                        <span class="mr-2"> <i class="fa-solid fa-bell"></i> </span>
+                        Bildirimler
+                    </a>
+
+                </div>
+
+                <div class="font-roboto">
+                    <a href="/posts/zamandamgasi"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition ">
+                        <span class="mr-2"> <i class="fa-solid fa-fingerprint"></i> </span>
+                        Zaman Damgası
+                    </a>
+                </div>
+
+
+            </div>
+
+            @if (User.Identity!.IsAuthenticated)
+            {
+                <div class="xl:hidden">
+
+                    <div class="font-roboto">
+                        <a href="/users/profile/@User.Identity.Name"
+                            class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition whitespace-nowrap ">
+                            <span class="mr-2"> <i class="fa-solid fa-user"></i> </span>
+                            @User.Identity.Name
+                        </a>
+
+                    </div>
+                    <div class="font-roboto">
+                        <a href="/Posts/create"
+                            class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition whitespace-nowrap ">
+                            <span class="mr-2"> <i class="fa-solid fa-pen-fancy"></i> </span>
+                            Senaryo Yayınla
+                        </a>
+                        <div class="font-roboto">
+                            <a href="/posts/requests"
+                                class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition ">
+                                <span class="mr-2"> <i class="fa-solid fa-bell"></i> </span>
+                                Bildirimler
+                            </a>
+
+                        </div>
+
+                    </div <div class="font-roboto">
+                    <a href="/posts/list"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition whitespace-nowrap ">
+                        <span class="mr-2"><i class="fa-solid fa-book"></i></span>
+                        Senaryolarım
+                    </a>
+
+
+                </div>
+                <div class="font-roboto">
+                    <a href="/account/logout"
+                        class="flex px-4 py-1 mt-3 items-center text-xl hover:text-indigo-700 transition whitespace-nowrap ">
+                        <span class="mr-2"><i class="fa-solid fa-right-from-bracket"></i> </span>
+                        Çıkış yap
+                    </a>
+
+                </div>
+            </div>
+            }
+            else
+            {
+            <div class="xl:hidden">
+
+                <button
+                    class=" flex mx-4 p-1 mt-3  overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-blue-300 whitespace-nowrap">
+                    <a href="/account/login"
+                        class="relative px-4 py-1.5 transition-all ease-in duration-200 bg-slate-300 dark:bg-gray-900 text-gray-800 font-bold dark:text-gray-200 rounded-md group-hover:bg-opacity-0">
+                        Giriş Yap
+                    </a>
+                </button>
+            </div>
+            }
+
+    </div>
+    </div>
+
+    <div class="flex-1">
+
+        @RenderBody()
+    </div>
+
+    <footer class="mt-16">
+        <div class="h-1 rounded-lg bg-amber-500 w-full"></div>
+
+        <!-- Foooter -->
+        <section class="bg-slate-200 dark:bg-gray-900 ">
+            <div class="max-w-screen-xl px-4 py-10 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
+                <nav class="flex flex-wrap justify-center -mx-5 -my-1">
+                    <div class="px-5 py-1">
+                        <a href="/home/hakkimda"
+                            class="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300">
+                            Hakkımızda
+                        </a>
+                    </div>
+                    <div class="px-5 py-1">
+                        <a href="/posts/Index"
+                            class="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300">
+                            Senaryolar
+                        </a>
+                    </div>
+                    <div class="px-5 py-1">
+                        <a href="/posts/popular"
+                            class="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300">
+                            Popülerler
+                        </a>
+                    </div>
+                    <div class="px-5 py-1">
+                        <a href="/posts/zamandamgasi"
+                            class="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300">
+                            Zaman Damgası
+                        </a>
+                    </div>
+                    <div class="px-5 py-1">
+                        <a href="/home/hakkimda"
+                            class="text-base leading-6 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300">
+                            İletişim
+                        </a>
+                    </div>
+
+                </nav>
+                <div class="flex justify-center mt-4 space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300">
+                        <span class="sr-only">Facebook</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300">
+                        <span class="sr-only">Instagram</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
+                            </path>
+                        </svg>
+                    </a>
+
+                </div>
+                <p
+                    class="mt-4 text-base leading-6 text-center text-gray-400 dark:text-gray-400 dark:hover:text-gray-300">
+                    © 2024 Senarium. Tüm hakları saklıdır. </p>
+            </div>
+        </section>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <!-- JavaScript Kodları -->
+    <script>
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        // Tema tercihini localStorage'dan yükle ve uygula
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+
+        // localStorage kontrol et ve sayfa yüklendiğinde tema uygula
+        var currentTheme = localStorage.getItem('color-theme');
+        if (currentTheme) {
+            applyTheme(currentTheme);
+        } else {
+            // Sistem temasına göre başlangıç teması belirle
+            var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(systemPrefersDark ? 'dark' : 'light');
+        }
+
+        // Sistem temasındaki değişiklikleri dinle
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+            if (!localStorage.getItem('color-theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+
+        // Tema butonuna tıklandığında tema değiştir ve kaydet
+        themeToggleBtn.addEventListener('click', function () {
+            if (document.documentElement.classList.contains('dark')) {
+                applyTheme('light');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                applyTheme('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Yan menüyü açıp kapatma işlevselliği
+        const openSidebar = document.getElementById('open_sidebar');
+        const sidebarWrapper = document.getElementById('sidebar_wrapper');
+
+        // Yan menüyü aç
+        openSidebar.addEventListener('click', () => {
+            sidebarWrapper.classList.toggle('opacity-0');
+            sidebarWrapper.classList.toggle('invisible');
+        });
+
+        // Yan menüyü kapatma
+        sidebarWrapper.addEventListener('click', () => {
+            sidebarWrapper.classList.add('opacity-0');
+            sidebarWrapper.classList.add('invisible');
+        });
+
+    </script>
+    <script>
+        // Dropdown Toggle Functionality
+        const menuButton = document.getElementById("user-menu-button");
+        const dropdown = document.getElementById("user-dropdown");
+
+        menuButton.addEventListener("click", () => {
+            dropdown.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!menuButton.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add("hidden");
+            }
+        });
+    </script>
+</body>
+
+</html>

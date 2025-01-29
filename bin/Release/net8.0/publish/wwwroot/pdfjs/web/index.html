@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</head>
+
+
+<body class="font-poppins bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] h-screen">
+    <header class="bg-gray-900">
+        <nav class="flex justify-between items-center w-[95%]  mx-auto">
+            <div>
+                <img class="w-16 cursor-pointer" src="https://cdn-icons-png.flaticon.com/512/5968/5968204.png"
+                    alt="...">
+            </div>
+            <div
+                class="nav-links duration-500 md:static absolute  md:min-h-fit min-h-[40vh] left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center bg-gray-900 px-5">
+                <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 text-white ">
+                    <li>
+                        <a class="hover:text-indigo-700" href="#">Anasayfa</a>
+                    </li>
+
+                    <li>
+                        <a class="hover:text-indigo-700" href="#">Popülerler</a>
+                    </li>
+                    <li>
+                        <a class=" hover:text-indigo-700" href="#">Hakkımızda</a>
+                    </li>
+                    <div>
+                        <button type="button"
+                            class="dropdown-toggle py-2  hover:text-indigo-700 flex items-center gap-2 rounded">
+                            <span class="pointer-events-none select-none">Kategoriler</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-gray-900 text-white rounded-b-lg pb-2">
+                            <a href="#" class="block px-6 py-2 hover:text-indigo-700">Film</a>
+                            <a href="#" class="block px-6 py-2 hover:text-indigo-700">Dizi</a>
+                            <a href="#" class="block px-6 py-2 hover:text-indigo-700">Tiyatro</a>
+                        </div>
+                    </div>
+
+                </ul>
+            </div>
+            <div class="flex items-center  gap-3 ">
+                <button
+                    class=" flex  p-0.5  overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    <span
+                        class="relative px-4 py-1.5 transition-all ease-in duration-200 bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Giriş Yap
+                    </span>
+                </button>
+                <button
+                    class="flex  p-0.5 overflow-hidden text-sm font-medium rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white text-white focus:ring-4 focus:outline-none focus:ring-blue-300 whitespace-nowrap">
+                    <span
+                        class="relative px-4 py-1.5 transition-all ease-in duration-200 bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Kayıt Ol
+                    </span>
+                </button>
+
+                <ion-icon onclick="onToggleMenu(this)" name="menu"
+                    class="text-3xl cursor-pointer md:hidden text-white"></ion-icon>
+            </div>
+
+    </header>
+
+
+</body>
+<script>
+    var swiper = new Swiper(".progress-slide-carousel", {
+        loop: true,
+        fraction: true,
+
+        autoplay: {
+            delay: 2200,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".progress-slide-carousel .swiper-pagination",
+            type: "progressbar",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+   
+    document.addEventListener("DOMContentLoaded", () => 
+    {
+        // Select all dropdown toggle buttons
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle")
+
+        dropdownToggles.forEach((toggle) => {
+            toggle.addEventListener("click", () => {
+                // Find the next sibling element which is the dropdown menu
+                const dropdownMenu = toggle.nextElementSibling
+
+                // Toggle the 'hidden' class to show or hide the dropdown menu
+                if (dropdownMenu.classList.contains("hidden")) {
+                    // Hide any open dropdown menus before showing the new one
+                    document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+                        menu.classList.add("hidden")
+                    })
+
+                    dropdownMenu.classList.remove("hidden")
+                } else {
+                    dropdownMenu.classList.add("hidden")
+                }
+            })
+        })
+    })
+
+    // Clicking outside of an open dropdown menu closes it
+    window.addEventListener("click", function (e) {
+        if (!e.target.matches(".dropdown-toggle")) {
+            document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+                if (!menu.contains(e.target)) {
+                    menu.classList.add("hidden")
+                }
+            })
+        }
+    })
+
+    const navLinks = document.querySelector('.nav-links')
+    function onToggleMenu(e) {
+        e.name = e.name === 'menu' ? 'close' : 'menu'
+        navLinks.classList.toggle('top-[7%]')
+    }
+</script>
+
+</html>

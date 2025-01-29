@@ -1,0 +1,70 @@
+@model CreateViewModel
+
+
+<div class=" flex bg-slate-200 dark:bg-gray-900 items-center justify-center ">
+    <div
+        class="bg-slate-200   dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none  p-8 my-4 rounded-lg max-w-sm w-full">
+        <div class="flex justify-center mb-6">
+            <span class="flex items-center justify-center bg-gray-800 w-16 dark:bg-gray-200  rounded-full p-3">
+                <i class="fa-solid fa-user   text-gray-100 dark:text-gray-900"></i>
+            </span>
+        </div>
+        <h2 class="text-2xl text-gray-800 dark:text-gray-200 font-semibold text-center mb-2">Yeni Hesap Oluştur</h2>
+        <p class="text-gray-800 dark:text-gray-200 text-center mb-6">Kayıt olmak için bilgilerinizi giriniz.</p>
+
+
+        <form asp-controller="Account" asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-red-800 mb-2 "></div>
+            <div class="mb-4">
+                <label asp-for="UserName"
+                    class="block text-gray-800 dark:text-gray-200 text-sm font-semibold mb-2">Kullanıcı Adı*</label>
+                <input asp-for="UserName"
+                    class="form-input w-full px-2 py-2 border rounded-lg text-black shadow-md focus:ring-blue-500 focus:border-blue-600"
+                    required placeholder="S.isikci">
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Email" class="block text-gray-800 dark:text-gray-200 text-sm font-semibold mb-2">E-posta
+                    Adresi*</label>
+                <input type="email" asp-for="Email"
+                    class="form-input w-full px-2 py-2 border rounded-lg text-black shadow-md focus:ring-blue-500 focus:border-blue-600"
+                    required placeholder="Ornek@gmail.com">
+            </div>
+            <div class="mb-4">
+                <label asp-for="FullName" class="block text-gray-800 dark:text-gray-200 text-sm font-semibold mb-2">Ad
+                    Soyad*</label>
+                <input asp-for="FullName"
+                    class="form-input w-full px-2 py-2 border rounded-lg text-black shadow-md focus:ring-blue-500 focus:border-blue-600"
+                    required placeholder="Salih Işıkcı">
+            </div>
+            <div class="mb-6">
+                <label asp-for="Password"
+                    class="block text-gray-800 dark:text-gray-200  text-sm font-semibold mb-2">Şifre*</label>
+                <input type="password" asp-for="Password"
+                    class="form-input w-full px-2 py-2 border rounded-lg shadow-md text-black focus:ring-blue-500"
+                    required placeholder="••••••••">
+                <p class="text-gray-800 dark:text-gray-300 text-xs mt-1">En az 1 büyük harf, 1 rakam içermeli ve minimum
+                    8 karakter
+                    olmalıdır.</p>
+
+            </div>
+            <div class="mb-6">
+                <label asp-for="ConfirmPassword"
+                    class="block text-gray-800 dark:text-gray-200 text-sm font-semibold mb-2">Şifre
+                    kontrolü*</label>
+                <input type="password" asp-for="ConfirmPassword"
+                    class="form-input w-full px-2 py-2 border rounded-lg text-black shadow-md focus:ring-blue-500"
+                    required placeholder="••••••••">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Üye
+                Ol</button>
+            <p class=" text-gray-600 dark:text-gray-400 text-xs text-center mt-4">
+                Kayıt ol butonuna tıklayarak, bu Sitenin
+                <a href="#" class="text-blue-500 hover:underline">Şartlarını ve Koşullarını</a> kabul ettiğinizi
+                onaylarsınız.
+            </p>
+        </form>
+    </div>
+</div>

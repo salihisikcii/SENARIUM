@@ -1,0 +1,29 @@
+@model List<Categories>
+
+<div
+    class="bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none rounded-xl p-4 mr-4">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-300 font-roboto">Format</h3>
+    <div class=" text-gray-800 dark:text-gray-300 space-y-2 mt-4">
+        @{
+            // Sayfa tipi bilgisini ViewData'dan alırken null kontrolü yap
+            var currentPageType = ViewData["PageType"]?.ToString() ?? "Default";
+        }
+        @foreach (var item in Model)
+        {
+
+            string linkUrl = currentPageType == "Index"
+            ? $"/posts/category/{item.Url}"
+            : $"/posts/popular/category/{item.Url}";
+
+            <div class="flex justify-between font-semibold hover:text-indigo-700 transition">
+                <a href="@linkUrl">
+                    <span class="mr-2">
+                        <i class="fa-solid fa-folder hover:text-indigo-700"></i>
+                    </span>
+                    <span class="hover:text-indigo-700">@item.Text</span>
+                </a>
+            </div>
+        }
+
+    </div>
+</div>

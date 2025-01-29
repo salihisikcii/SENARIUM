@@ -1,0 +1,42 @@
+@model LoginViewModel
+
+<div class=" flex  bg-slate-200 dark:bg-gray-900 items-center justify-center h-screen">
+    <div class=" bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none p-8 rounded-lg  max-w-sm w-full">
+        <div class="flex justify-center mb-6">
+            <span class="flex items-center justify-center bg-gray-800 w-16 dark:bg-gray-200  rounded-full p-3">
+                <i class="fa-solid fa-user   text-gray-100 dark:text-gray-900"></i>
+            </span>
+        </div>
+        <h2 class="text-2xl text-gray-800 dark:text-gray-200 font-semibold text-center mb-4">Giriş Yap</h2>
+
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="All" class="text-red-800 mb-2 "></div>
+
+            <div class="mb-4">
+                <label asp-for="Email" class="block text-gray-800 dark:text-gray-200 text-sm font-semibold mb-2">E-posta Adresi*</label>
+                <input type="email" asp-for="Email"
+                    class="form-input w-full px-2 py-2 border rounded-lg text-black focus:ring-blue-500 focus:border-blue-600" required
+                    placeholder="Ornek@gmail.com">
+            </div>
+            <div class="mb-6">
+                <label asp-for="Password" class="block text-gray-800 dark:text-gray-200 text-sm font-semibold mb-2">Şifre*</label>
+                <input type="password" asp-for="Password"
+                    class="form-input w-full px-2 py-2 border rounded-lg text-black focus:ring-blue-500" required
+                    placeholder="••••••••">
+            </div>
+            <div class="form-check mb-3 flex justify-between ">
+                <div>
+                <input asp-for="RememberMe" class="form-check-input">
+                <label asp-for="RememberMe" class=" text-gray-800 dark:text-gray-200">Beni Hatırla</label>
+                </div>
+                <div><a href=""class=" text-blue-200 text-gray-800 dark:text-gray-200">Şifremi Unuttum</a></div>
+            </div>
+            <button type="submit"
+                class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Giriş Yap</button>
+            <p class="text-gray-800 dark:text-gray-200 text-sm text-center mt-4">
+                Üye Değil misin ? Hemen
+                <a href="/account/create" class="text-blue-600 dark:text-blue-200 hover:underline text-base"> üye ol</a>
+            </p>
+        </form>
+    </div>
+</div>

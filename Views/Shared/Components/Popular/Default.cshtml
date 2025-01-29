@@ -1,0 +1,89 @@
+@model List<Post>
+
+<div class="bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none  ml-3  rounded-xl p-4 mb-5 mr-4">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-300 ">En Çok Oy Alanlar</h3>
+    @foreach (var post in Model)
+    {
+        <div class="mt-1  justify-center">
+            <a href="/posts/details/@post.Url"
+                class="flex flex-wrap text-gray-600 dark:text-gray-400 justify-center mt-3 hover:text-indigo-700">
+                <div class="flex-shrink-0">
+                    <img src="~/img/@post.Image"
+                        class="h-18 w-16 rounded object-cover hover:scale-110 transition duration-300">
+                </div>
+                <div class="flex-grow   pl-3">
+                    <h5
+                        class=" flex  text-xl items-center md:justify-center   lg:justify-normal  font-roboto font-semibold transition">
+                        @post.Title
+                    </h5>
+                    <div
+                        class="flex text-gray-600 dark:text-gray-400 text-xs items-center md:justify-center  justify-normal lg:justify-normal mt-1">
+                        <span class="mr-2 text-xs">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+
+                        @if (post.User != null && !string.IsNullOrEmpty(post.User.FullName))
+                        {
+                            @post.User.FullName
+                        }
+                        else
+                        {
+
+                        }
+                    </div>
+                    <div
+                        class="flex text-gray-600 dark:text-gray-400 text-xs items-center md:justify-center  justify-normal lg:justify-normal  mt-1">
+                        <span class="mr-2 text-xs">
+                            <i class="fa-solid fa-clock"></i>
+                        </span>
+                        @post.PublishedOn.ToString("dd MMMM yyyy")
+                    </div>
+                </div>
+            </a>
+            <hr class=" w-full my-2 bg-yellow-800 dark:bg-amber-400">
+        </div>
+    }
+
+</div>
+@* <div class=" bg-slate-200 dark:bg-gray-800  shadow-sm rounded-xl p-4 mr-4 ml-3">
+    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-300 font-roboto">Social Media</h3>
+    <div class="flex mt-4">
+        <a href="blog.html"
+            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+
+        <a href="blog.html"
+            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+            <i class="fa-brands fa-twitter"></i>
+        </a>
+
+        <a href="blog.html"
+            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="blog.html"
+            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+            <i class="fa-brands fa-pinterest"></i>
+        </a>
+
+        <a href="blog.html"
+            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+
+        <a href="blog.html"
+            class="w-8 h-8 rounded-sm flex ml-1 mr-1 items-center justify-center border-1 border-gray-800 dark:border-gray-300 hover:text-indigo-700 text-base text-gray-800 dark:text-gray-300">
+            <i class="fa-brands fa-linkedin"></i>
+        </a>
+
+
+
+
+
+
+    </div>
+
+
+</div> *@

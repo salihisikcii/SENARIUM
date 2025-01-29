@@ -1,0 +1,89 @@
+@model IEnumerable<BlogApps.Entity.PostRequest>
+
+<div
+    class="w-8/12 lg:w-5/12 min-h-96 mx-auto mt-10 p-6 bg-slate-200  dark:border-none  border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:!shadow-none rounded-lg ">
+    <h1 class="text-2xl font-bold text-center  text-gray-800 dark:text-gray-200"><i
+                            class="fa-solid fa-bell"></i> Bildirimler</h1>
+                    <div class="h-1 rounded-lg mb-6 bg-amber-500 w-full"></div>
+
+    <div id="requests-container" class="flex  flex-col items-center">
+        @foreach (var request in Model)
+        {
+            <div id="request-@request.RequestId" class="w-full mb-4 max-w-md p-4 bg-slate-200    border-2 border-gray-300 shadow-md dark:bg-gray-800  dark:text-gray-200 dark:border-gray-600 rounded-lg"
+                role="alert">
+                <div class="flex items-center ">
+                    <span class="mb-1 text-base font-semibold text-gray-900 dark:text-white">Yeni Bildirim</span>
+                    
+                </div>
+                <hr>
+                <div class="flex items-center mt-2">
+                    <div class="relative inline-block shrink-0">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            @if ( request.Requester != null && request.Requester.Image != null)
+                            {
+                                <img class="h-full w-full rounded-full" src='~/img/@request.Requester.Image' alt="" />
+                            }
+                            else
+                            {
+                                <img class="h-full w-full rounded-full" src='~/img/avatar1.jpg' alt="" />
+                            }
+                        </div>
+
+                    </div>
+                    <div class="ms-3 text-sm font-normal">
+                        <div class="text-sm  text-gray-900 dark:text-white">
+                            <strong>@(request.Requester?.FullName ?? "Bilinmiyor")</strong> 
+
+                        </div>
+                        <div class="text-sm ">
+
+                            "<strong>@(request.Post?.Title ?? "Başlık Yok")</strong>"
+                            senaryonuzu görmek istiyor.</div>
+                        <span class="text-xs font-medium text-gray-600 dark:text-gray-400">@request.RequestedOn.ToString("dd MMMM yyyy")</span>
+                    </div>
+                    
+                </div>
+                <div class="flex gap-2 mt-4 ">
+                        <button type="button"
+                            class="bg-green-600 text-white  text-sm whitespace-nowrap px-3 py-1 rounded hover:bg-green-700 transition accept-request"
+                            data-id="@request.RequestId">Kabul Et</button>
+                        <button type="button"
+                            class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition reject-request"
+                            data-id="@request.RequestId">Reddet</button>
+                    </div>
+            </div>
+        }
+      
+    </div>
+
+    <script>
+        $(document).on('click', '.accept-request', function () {
+            var requestId = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("AcceptRequest", "Posts")',
+                type: 'POST',
+                data: { requestId: requestId },
+                success: function (response) {
+                    $('#request-' + requestId).remove();  // Başarıyla kabul edildikten sonra talebi ekrandan kaldır
+                },
+                error: function () {
+                    alert('Bir hata oluştu.');
+                }
+            });
+        });
+
+        $(document).on('click', '.reject-request', function () {
+            var requestId = $(this).data('id');
+            $.ajax({
+                url: '@Url.Action("RejectRequest", "Posts")',
+                type: 'POST',
+                data: { requestId: requestId },
+                success: function (response) {
+                    $('#request-' + requestId).remove();  // Başarıyla reddedildikten sonra talebi ekrandan kaldır
+                },
+                error: function () {
+                    alert('Bir hata oluştu.');
+                }
+            });
+        });
+    </script>
