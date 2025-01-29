@@ -9,3 +9,4 @@ Her ay düzenlenen kullanıcı oylamalarıyla en popüler içerikler belirlenir 
 Bu liste sayesinde senaristler daha fazla görünürlük kazanırken, yapımcılar da kaliteli içeriklere kolayca ulaşabilir. 
 
 knoloji açısından, proje ASP.NET MVC, MySQL ve Entity Framework kullanılarak geliştirilmiştir. Kullanıcı arayüzü HTML, CSS, jQuery ve Tailwind ile oluşturulmuştur.
+![anasayfa li](https://github.com/user-attachments/assets/29fd3a94-5f96-486d-a789-9fff2fb09a8e)
